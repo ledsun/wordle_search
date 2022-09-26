@@ -4619,7 +4619,7 @@
       matched = search dict, exclude, included, correct_places
       
       html = matched.map do |m|
-        "<div>#{m}</div>"
+        "<div><a href=\"https://ejje.weblio.jp/content/#{m}\" target=\"_blank\">#{m}</a></div>"
       end.join
       document.getElementById("result")[:innerHTML] = html
     end
