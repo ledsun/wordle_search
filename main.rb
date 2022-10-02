@@ -7,7 +7,7 @@ template = ERB.new(<<~'END_HTML')
   >
     <a
       href="https://www.merriam-webster.com/dictionary/<%= word %>"
-      target="_blank"><%= word %></a>
+      target="_blank"><%= heiglighted_word %></a>
   </div>
 END_HTML
 
@@ -20,14 +20,14 @@ search_button.addEventListener "click" do
   matched = WordleSeach.search exclude, included, correct_places
 
   html = matched.map do |word|
-    word = word.chars.map do |char|
+    heiglighted_word = word.chars.map do |char|
       if included.include? char
         "<span class='text-red-500'>#{char}</span>"
       else
         char
       end
     end.join
-    template.result_with_hash word: word
+    template.result_with_hash word: , heiglighted_word:
   end.join
   document.getElementById("result")[:innerHTML] = html
 end
