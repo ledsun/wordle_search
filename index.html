@@ -1,20 +1,29 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wordle Search</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&display=swap');
-      html {
-        font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-      }
-      .result {
-        font-family: "Noto Sans Mono", monospace;
-      }
-    </style>
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wordle Search</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/ruby-head-wasm-wasi@0.3.0-2022-10-01-a/dist/browser.script.iife.js"></script>
+  <script defer type="text/ruby" src="wordle_search.rb"></script>
+  <script defer type="text/ruby" src="main.rb"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&display=swap');
+
+    html {
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    .result {
+      font-family: "Noto Sans Mono", monospace;
+    }
+  </style>
+</head>
+
+<body>
   <form class="bg-gray-900 w-full px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
       <label class="block text-blue-300 py-2 font-bold mb-2" for="exclude">
@@ -22,10 +31,7 @@
       </label>
       <input
         class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-        id="exclude"
-        type="text"
-        placeholder="aer"
-      />
+        id="exclude" type="text" placeholder="aer" />
     </div>
     <div class="mb-4">
       <label class="block text-blue-300 py-2 font-bold mb-2" for="included">
@@ -33,10 +39,7 @@
       </label>
       <input
         class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-        id="included"
-        type="text"
-        placeholder="os"
-      />
+        id="included" type="text" placeholder="os" />
     </div>
     <div class="mb-4">
       <label class="block text-blue-300 py-2 font-bold mb-2" for="correct_places">
@@ -44,25 +47,17 @@
       </label>
       <input
         class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-        id="correct_places"
-        type="text"
-        value="\w\w\w\w\w"
-      />
+        id="correct_places" type="text" value="\w\w\w\w\w" />
     </div>
     <div class="flex items-center justify-between pt-4">
       <button
         class="bg-blue-600 w-full text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-        id="search_button"
-        type="button"
-      >
+        id="search_button" type="button">
         Search
       </button>
     </div>
   </form>
   <div id="result" class="result"></div>
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/ruby-head-wasm-wasi@0.3.0-2022-10-01-a/dist/browser.script.iife.js"></script>
-    <script type="text/ruby" src="wordle_search.rb"></script>
-    <script type="text/ruby" src="main.rb"></script>
-  </body>
+</body>
+
 </html>
