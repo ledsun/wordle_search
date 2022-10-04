@@ -27,7 +27,7 @@ search_button.addEventListener "click" do
         char
       end
     end.join
-    template.result_with_hash word: , heiglighted_word:
+    template.result_with_hash word:, heiglighted_word:
   end.join
   document.getElementById("result")[:innerHTML] = html
 end
