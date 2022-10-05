@@ -16,8 +16,8 @@ search_button = document.getElementById "search_button"
 search_button.addEventListener "click" do
   exclude = document.getElementById("exclude")[:value]
   included = document.getElementById("included")[:value].to_s
-  correct_places = document.getElementById("correct_places")[:value]
-  matched = WordleSeach.search exclude, included, correct_places
+  correct_places = document.getElementById("correct_places")[:value].to_s
+  matched = WordleSeach.search exclude, included, correct_places.gsub('*', '\w')
 
   frequency_chars = matched.join
     .chars
@@ -29,11 +29,13 @@ search_button.addEventListener "click" do
     .join
 
   html = matched.map do |word|
-    heiglighted_word = word.chars.map do |char|
-      if included.include? char
+    heiglighted_word = word.chars.map.with_index do |char, i|
+      if correct_places[i] == char
+        "<span class='text-green-500'>#{char}</span>"
+      elsif included.include? char
         "<span class='text-red-500'>#{char}</span>"
       elsif frequency_chars.include? char
-        "<span class='text-green-500'>#{char}</span>"
+        "<span class='text-yellow-500'>#{char}</span>"
       else
         char
       end
