@@ -28,20 +28,26 @@ search_button.addEventListener "click" do
     .map { _1[0] }
     .join
 
-  html = matched.map do |word|
-    heiglighted_word = word.chars.map.with_index do |char, i|
-      if correct_places[i] == char
-        "<span class='text-green-500'>#{char}</span>"
-      elsif included.include? char
-        "<span class='text-red-500'>#{char}</span>"
-      elsif frequency_chars.include? char
-        "<span class='text-yellow-500'>#{char}</span>"
-      else
-        char
-      end
+  html = matched
+    .sort_by do |word|
+      (word.chars & frequency_chars.chars).length
+    end
+    .reverse
+    .map do |word|
+      heiglighted_word = word.chars.map.with_index do |char, i|
+        if correct_places[i] == char
+          "<span class='text-green-500'>#{char}</span>"
+        elsif included.include? char
+          "<span class='text-red-500'>#{char}</span>"
+        elsif frequency_chars.include? char
+          "<span class='text-yellow-500'>#{char}</span>"
+        else
+          char
+        end
+      end.join
+
+      template.result_with_hash word:, heiglighted_word:
     end.join
-    template.result_with_hash word:, heiglighted_word:
-  end.join
 
   document.getElementById("result")[:innerHTML] = html
 end
