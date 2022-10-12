@@ -35,19 +35,23 @@ search_button.addEventListener "click" do
     .reverse
     .map do |word|
       heiglighted_word = word.chars.map.with_index do |char, i|
-        if correct_places[i] == char
-          "<span class='text-green-500'>#{char}</span>"
-        elsif included.include? char
-          "<span class='text-red-500'>#{char}</span>"
-        elsif frequency_chars.include? char
-          "<span class='text-yellow-500'>#{char}</span>"
-        else
-          char
-        end
+        heigligten_char_with correct_places[i], included, frequency_chars, char
       end.join
 
       template.result_with_hash word:, heiglighted_word:
     end.join
 
   document.getElementById("result")[:innerHTML] = html
+end
+
+def heigligten_char_with(correct_place, included, frequency_chars, char)
+  if correct_place == char
+    "<span class='text-green-500'>#{char}</span>"
+  elsif included.include? char
+    "<span class='text-red-500'>#{char}</span>"
+  elsif frequency_chars.include? char
+    "<span class='text-yellow-500'>#{char}</span>"
+  else
+    char
+  end
 end
