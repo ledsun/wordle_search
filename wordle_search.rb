@@ -4598,7 +4598,7 @@ module WordleSeach
 
   def self.search exclude, included, correct_spots
     matched = DICTIONARY.grep(/^#{correct_spots}$/)
-      .grep_v(/[#{exclude}]/)
+    matched = matched.grep_v(/[#{exclude}]/) unless exclude.empty?
 
     included.chars.each do |char|
       matched = matched.grep(/#{char}/)

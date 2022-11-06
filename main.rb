@@ -14,7 +14,7 @@ END_HTML
 document = JS.global[:document]
 search_button = document.getElementById "search_button"
 search_button.addEventListener "click" do
-  exclude = document.getElementById("exclude")[:value]
+  exclude = document.getElementById("exclude")[:value].to_s
   included = document.getElementById("included")[:value].to_s
   correct_places = document.getElementById("correct_places")[:value].to_s
   matched = WordleSeach.search exclude, included, correct_places.gsub('*', '\w')
