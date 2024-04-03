@@ -1,5 +1,11 @@
-require "js"
 require "erb"
+require "js/require_remote"
+
+module Kernel
+  def require_relative(path) = JS::RequireRemote.instance.load(path)
+end
+
+require_relative "wordle_search"
 
 template = ERB.new(<<~'END_HTML')
   <div
