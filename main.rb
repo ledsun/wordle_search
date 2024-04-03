@@ -12,11 +12,13 @@ module OrbitalRing
       instance.instance_eval &block
     end
 
-    def click(selector, options)
+    def click(selectors, options)
       document = JS.global[:document]
       element = document.getElementById 'app_root'
       element.addEventListener "click" do |event|
-        to_method(options[:to]).call event
+        if event[:target].closest(selectors) != JS::Null
+          to_method(options[:to]).call event
+        end
       end
     end
 
@@ -90,5 +92,5 @@ class Dictionary
 end
 
 OrbitalRing::Routes.draw do
-  click "#search", to: "Dictionary#search"
+  click "#search_button", to: "Dictionary#search"
 end
