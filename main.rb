@@ -5,36 +5,10 @@ module Kernel
   def require_relative(path) = JS::RequireRemote.instance.load(path)
 end
 
-module OrbitalRing
-  class Routes
-    def self.draw(&block)
-      instance = self.new
-      instance.instance_eval &block
-    end
-
-    def click(selectors, options)
-      document = JS.global[:document]
-      element = document.getElementById 'app_root'
-      element.addEventListener "click" do |event|
-        if event[:target].closest(selectors) != JS::Null
-          to_method(options[:to]).call event
-        end
-      end
-    end
-
-    private
-
-    def to_method(name)
-      class_name, method_name = name.split("#")
-      Object.const_get(class_name).new.method(method_name)
-    end
-  end
-end
-
 require_relative "wordle_search"
 
-class Dictionary
-  def search(event)
+module DictionarySearch
+  def self.call(event, params)
     document = JS.global[:document]
     exclude = document.getElementById("exclude")[:value].to_s
     included = document.getElementById("included")[:value].to_s
@@ -68,7 +42,7 @@ class Dictionary
 
   private
 
-  def heigligten_char_with(correct_place, included, frequency_chars, char)
+  def self.heigligten_char_with(correct_place, included, frequency_chars, char)
     if correct_place == char
       "<span class='text-green-500'>#{char}</span>"
     elsif included.include? char
@@ -80,7 +54,7 @@ class Dictionary
     end
   end
 
-  def template = ERB.new(<<~'END_HTML')
+  def self.template = ERB.new(<<~'END_HTML')
     <div
       class="w-full flex flex-col justify-center items-center text-4xl tracking-[1em] leading-loose uppercase"
     >
@@ -92,5 +66,5 @@ class Dictionary
 end
 
 OrbitalRing::Routes.draw do
-  click "#search_button", to: "Dictionary#search"
+  click "#search_button", to: DictionarySearch
 end
