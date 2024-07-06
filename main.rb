@@ -34,7 +34,7 @@ module DictionarySearch
           heigligten_char_with correct_places[i], included, frequency_chars, char
         end.join
 
-        template.result_with_hash word:, heiglighted_word:
+        candidate_template.result_with_hash word:, heiglighted_word:
       end.join
 
     document.getElementById("result")[:innerHTML] = html
