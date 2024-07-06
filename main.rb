@@ -24,7 +24,7 @@ module DictionarySearch
       .map { _1[0] }
       .join
 
-    html = matched
+    candidates_html = matched
       .sort_by do |word|
         (word.chars & frequency_chars.chars).length
       end
@@ -37,7 +37,18 @@ module DictionarySearch
         candidate_template.result_with_hash word:, heiglighted_word:
       end.join
 
-    document.getElementById("result")[:innerHTML] = html
+    template = ERB.new(<<~'END_HTML')
+      <div>
+        <div
+          class="text-center"
+        >
+          <%= counts %> candidates found
+        </div>
+        <%= candidates_html %>
+      </div>
+    END_HTML
+
+    document.getElementById("result")[:innerHTML] = template.result_with_hash candidates_html: candidates_html, counts: matched.length
   end
 
   private
@@ -54,7 +65,7 @@ module DictionarySearch
     end
   end
 
-  def self.template = ERB.new(<<~'END_HTML')
+  def self.candidate_template = ERB.new(<<~'END_HTML')
     <div
       class="w-full flex flex-col justify-center items-center text-4xl tracking-[1em] leading-loose uppercase"
     >
