@@ -29,6 +29,7 @@ module DictionarySearch
         (word.chars & frequency_chars.chars).length
       end
       .reverse
+      .take(16)
       .map do |word|
         heiglighted_word = word.chars.map.with_index do |char, i|
           heigligten_char_with correct_places[i], included, frequency_chars, char
