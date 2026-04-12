@@ -55,22 +55,26 @@ module DictionarySearch
   private
 
   def self.heigligten_char_with(correct_place, included, frequency_chars, char)
-    if correct_place == char
-      "<span class='text-green-500'>#{char}</span>"
-    elsif included.include? char
-      "<span class='text-red-500'>#{char}</span>"
-    elsif frequency_chars.include? char
-      "<span class='text-yellow-500'>#{char}</span>"
-    else
-      char
-    end
+    color_class =
+      if correct_place == char
+        "text-green-500"
+      elsif included.include? char
+        "text-red-500"
+      elsif frequency_chars.include? char
+        "text-yellow-500"
+      else
+        ""
+      end
+
+    "<span class='inline-flex w-[0.9em] justify-center #{color_class}'>#{char}</span>"
   end
 
   def self.candidate_template = ERB.new(<<~'END_HTML')
     <div
-      class="w-full flex flex-col justify-center items-center text-4xl tracking-[1em] leading-loose uppercase"
+      class="w-fit mx-auto text-center text-4xl leading-loose uppercase"
     >
       <a
+        class="inline-flex justify-center gap-[0.35em]"
         href="https://www.merriam-webster.com/dictionary/<%= word %>"
         target="_blank"><%= heiglighted_word %></a>
     </div>
