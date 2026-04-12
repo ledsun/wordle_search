@@ -2,6 +2,8 @@
 
 Wordle 用の候補検索ツールです。`ruby.wasm` で `main.rb` をブラウザ上で実行します。
 
+公開先: https://wordle-search.onrender.com/
+
 ## 使い方
 
 ```bash
