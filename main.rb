@@ -1,9 +1,5 @@
 require "erb"
-require "js/require_remote"
-
-module Kernel
-  def require_relative(path) = JS::RequireRemote.instance.load(path)
-end
+require "js/require_remote/relative_shim"
 
 require_relative "wordle_search"
 
