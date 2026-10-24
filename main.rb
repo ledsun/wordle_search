@@ -1,6 +1,6 @@
 require "js/require_remote/relative_shim"
 
-require_relative "dictionary_search"
+require_relative "wordle_search"
 
 search_on_enter = proc do |event, params|
   next unless event[:key].to_s == "Enter"
@@ -10,7 +10,7 @@ search_on_enter = proc do |event, params|
 end
 
 OrbitalRing::Routes.draw do
-  click "#search_button", to: DictionarySearch
+  click "#search_button", to: WordleSearch
   keydown "#exclude", to: search_on_enter
   keydown "#included", to: search_on_enter
   keydown "#correct_places", to: search_on_enter

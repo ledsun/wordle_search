@@ -85,7 +85,7 @@ Ruby ローダー・`ruby+stdlib.wasm`・Tailwind・OrbitalRing は別のキャ�
 
 ## 検索辞書
 
-`wordle_search.rb` の `DICTIONARY` は、既存の4,594語に
+`dictionary.rb` の `DICTIONARY` は、既存の4,594語に
  [tabatkins/wordle-list](https://github.com/tabatkins/wordle-list) の14,855語を統合した
 14,857語です。重複を除いてアルファベット順に並べ、小文字の英字5文字に限定しています。
 データはアプリに同梱するため、起動時に辞書配布元への通信は発生しません。
