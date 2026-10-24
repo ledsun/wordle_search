@@ -1,5 +1,5 @@
 // Bump APP_VERSION whenever local application files change.
-const APP_VERSION = 'v2';
+const APP_VERSION = 'v3';
 const APP_CACHE = `wordle-search-app-${APP_VERSION}`;
 const DEPENDENCY_CACHE = 'wordle-search-dependencies-v1';
 const RUBY_BASE = 'https://cdn.jsdelivr.net/npm/@ruby/head-wasm-wasi@2.10.1/dist/';
@@ -10,7 +10,7 @@ const DEPENDENCIES = [
   'https://cdn.jsdelivr.net/gh/ledsun/orbital_ring@1.0.0/orbital_ring.rb',
 ];
 const APP_FILES = [
-  './', './index.html', './main.rb', './wordle_search.rb', './pwa.js',
+  './', './index.html', './main.rb', './dictionary_search.rb', './wordle_search.rb', './pwa.js',
   './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
 ];
 const FONT_STYLES = [
