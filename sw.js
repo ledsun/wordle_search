@@ -1,5 +1,5 @@
 // Bump APP_VERSION whenever local application files change.
-const APP_VERSION = 'v3';
+const APP_VERSION = 'v4';
 const APP_CACHE = `wordle-search-app-${APP_VERSION}`;
 const DEPENDENCY_CACHE = 'wordle-search-dependencies-v1';
 const RUBY_BASE = 'https://cdn.jsdelivr.net/npm/@ruby/head-wasm-wasi@2.10.1/dist/';
