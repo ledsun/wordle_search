@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wordle Search</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta name="theme-color" content="#111827" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+  <script defer src="pwa.js"></script>
   <script defer
     src="https://cdn.jsdelivr.net/npm/@ruby/head-wasm-wasi@2.10.1/dist/browser.script.iife.js"></script>
   <script type="text/ruby" src="https://cdn.jsdelivr.net/gh/ledsun/orbital_ring@1.0.0/orbital_ring.rb"></script>
@@ -58,6 +63,7 @@
     </div>
   </form>
   <div id="result" class="result"></div>
+  <p id="offline-status" role="status" class="text-center text-sm p-3"></p>
 </body>
 
 </html>
